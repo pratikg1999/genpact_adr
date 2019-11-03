@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 
 def naranjo(request):
-    context = {'title': "Naranjo"}
-    return render(request, "adr/naranjo.html", context)
+    return HttpResponse("Hello, world. You're at the polls index.")
 
+def home(request):
+
+    return render(request, 'adr/home.html', {})
