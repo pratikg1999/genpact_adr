@@ -1,0 +1,33 @@
+{% extends 'adr/base.html' %}
+{% block content %}
+
+<div class="container">
+    <form method="post">
+      {%csrf_token%}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Patient's Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="name"
+                   placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="patientAge">Age</label>
+            <input type="text" class="form-control" id="patientAge" placeholder="Age">
+        </div>
+        <div class="form-group">
+            <label for="patientGender">Gender</label>
+            <input type="text" class="form-control" id="patientGender" placeholder="Gender" name="gender">
+        </div>
+        <div class="form-group">
+            <label for="patientDisease">Disease</label>
+            <input type="text" class="form-control" id="patientDisease" placeholder="Disease" name="disease">
+        </div>
+        <div class="form-group">
+            <label for="PatientMedication">Medication</label>
+            <input type="text" class="form-control" id="PatientMedication" placeholder="Medication" name="medication">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+{% endblock %}
