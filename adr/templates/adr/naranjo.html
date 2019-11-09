@@ -121,35 +121,6 @@
     </div>
 </div>
 
-<script>
-    var questionFormCard = document.getElementById("question_form_card");
-    function calculateNaranjoScore(){
-        var comboBoxes = document.querySelector(".card-body form").querySelectorAll(".form-row select");
-        var score =0;
-        for(var i=0; i<comboBoxes.length; i++){
-            let curBox = comboBoxes[i];
-            switch(curBox.value){
-                case "Yes": score++;
-                if(i==1 || i==3){
-                    score++;
-                }
-                else if(i==5 || i==4){
-                    score--;
-                }
-                break;
-                case "No": if(i==1 || i==3){
-                    score--;
-                }
-                else if(i==4){
-                    score+=2;
-                }
-                else if(i==5){
-                    score+=1;
-                }
-            }
-        }
-        console.log(score);
-        return score;
-    }
-</script>
+
+
 {% endblock %}

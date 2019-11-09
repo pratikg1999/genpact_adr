@@ -1,9 +1,9 @@
 {% extends 'adr/base.html' %}
 {% block content %}
-
+<br><br>
 <div class="container">
-    <form method="post">
-      {%csrf_token%}
+    <form method="post" id="prescriptionForm">
+        {%csrf_token%}
         <div class="form-group">
             <label for="exampleInputEmail1">Patient's Name</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="name"
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="patientAge">Age</label>
-            <input type="text" class="form-control" id="patientAge" placeholder="Age">
+            <input type="text" class="form-control" id="patientAge" placeholder="Age" name="age">
         </div>
         <div class="form-group">
             <label for="patientGender">Gender</label>
@@ -25,9 +25,190 @@
             <label for="PatientMedication">Medication</label>
             <input type="text" class="form-control" id="PatientMedication" placeholder="Medication" name="medication">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="text" class="form-control" id="naranjoFieldValue" value="-1" placeholder="Medication" name="naranjoFieldValue" hidden>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="isPrevMed" onclick="showOrHideNaranjo()">
+            <label class="form-check-label" for="isPrevMed">
+                Previous Medication Taken?
+            </label>
+        </div>
+        <br>
+
+<!--    <button type="submit" class="btn btn-primary" style="margin: 10px 0">Submit</button>-->
     </form>
+
+    <div class="card" id="naranjo_card" style="display:none">
+        <div class="card-header">
+            Answer these questions for Naranjo score
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-row form-group" id="question_group1">
+                    <label for="question1" class="col-md-10"> Are there previous conclusive reports on this
+                        reaction?</label>
+                    <select id="question1" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="question_group2">
+                    <label for="question2" class="col-md-10">Did the adverse events appear after the suspected drug was
+                        given?</label>
+                    <select id="question2" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group3">
+                    <label for="question3" class="col-md-10">Did the adverse reaction improve when the drug was
+                        discontinued
+                        or a specific antagonist was given?</label>
+                    <select id="question3" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group4">
+                    <label for="question4" class="col-md-10"> Did the adverse reaction appear when the drug was
+                        readministered?</label>
+                    <select id="question4" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group5">
+                    <label for="question5" class="col-md-10">Are there alternative causes that could have caused the
+                        reaction?</label>
+                    <select id="question5" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group6">
+                    <label for="question6" class="col-md-10">Did the reaction reappear when a placebo was given?</label>
+                    <select id="question6" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group7">
+                    <label for="question7" class="col-md-10">Was the drug detected in any body fluid in toxic
+                        concentrations?</label>
+                    <select id="question7" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group8">
+                    <label for="question8" class="col-md-10">Was the reaction more severe when the dose was increased,
+                        or
+                        less severe when the dose was decreased?</label>
+                    <select id="question8" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+
+                <div class="form-row form-group" id="group_group9">
+                    <label for="question9" class="col-md-10">Did the patient have a similar reaction to the same or
+                        similar
+                        drugs in any previous exposure?</label>
+                    <select id="question9" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+                <div class="form-row form-group" id="group_group10">
+                    <label for="question10" class="col-md-10">Was the adverse event confirmed by any objective
+                        evidence?</label>
+                    <select id="question10" class="form-control col-md-2">
+                        <option>No</option>
+                        <option>Yes</option>
+                        <option selected>Do not know or not done</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin: 10px 0" onclick="sendData()">Submit</button>
+
 </div>
 
 
+<script>
+    var questionFormCard = document.getElementById("question_form_card");
+    var naranjoCard = document.getElementById("naranjo_card");
+    var naranjoFieldValue = document.getElementById("naranjoFieldValue");
+    var checkbox = document.getElementById("isPrevMed");
+<!--    var prescriptionForm = document.getElementById("prescriptionForm");-->
+<!--    var prescriptionForm = document-->
+
+
+    function showOrHideNaranjo(){
+        console.log("it works");
+
+        if (checkbox.checked == true){
+            naranjoCard.style.display = "block";
+        } else {
+            naranjoCard.style.display = "none";
+        }
+
+    }
+
+    function sendData(){
+
+        if (checkbox.checked == true) {
+            var comboBoxes = document.querySelector(".card-body form").querySelectorAll(".form-row select");
+            var score =0;
+            for(var i=0; i<comboBoxes.length; i++){
+                let curBox = comboBoxes[i];
+                switch(curBox.value){
+                    case "Yes": score++;
+                    if(i==1 || i==3){
+                        score++;
+                    }
+                    else if(i==5 || i==4){
+                        score--;
+                    }
+                    break;
+                    case "No": if(i==1 || i==3){
+                        score--;
+                    }
+                    else if(i==4){
+                        score+=2;
+                    }
+                    else if(i==5){
+                        score+=1;
+                    }
+                }
+            }
+            naranjoFieldValue.value = score;
+            console.log(score);
+        }
+        prescriptionForm.submit();
+
+    }
+
+
+
+
+</script>
 {% endblock %}
