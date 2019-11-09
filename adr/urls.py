@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('naranjo', views.naranjo, name='naranjo'),
-    path('', views.home, name='home')
+    path('', views.home, name='home'),
+    path('reverseSave', views.reverseSave, name='reverseSave'),
 ]

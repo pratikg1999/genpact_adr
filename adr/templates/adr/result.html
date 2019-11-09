@@ -1,0 +1,38 @@
+{% extends 'adr/base.html' %}
+{% block content %}
+
+
+
+{% if isADR %}
+<div class="alert alert-success" role="alert">
+
+    <h4 class="alert-heading">All Good!</h4>
+    <p>
+        ADR Confidence: <b>8%</b><br>
+        Exact Cases: <b>0</b><br>
+        Similar Cases: <b>2 (<3% of medication group)</b>
+    </p>
+    <hr>
+    <p class="mb-0">The prescription has a very low ADR confidence for the symptoms and other factors of patient. The medicine is safe to prescribe.</p><br>
+    <h3><a href="{% url 'home'%}">Continue as an exception.</a> || <a href="{% url 'reverseSave'%}">Return</a></h3>
+
+</div>
+{% else %}
+
+<div class="alert alert-danger" role="alert">
+
+    <h4 class="alert-heading">All Good!</h4>
+    <p>
+        ADR Confidence: <b>88%</b><br>
+        Exact Cases: <b>21</b><br>
+        Similar Cases: <b>32 (>91% of medication group)</b>
+    </p>
+    <hr>
+    <p class="mb-0">The prescription has a very high ADR confidence for the symptoms and other factors of patient. The medicine is not recommended to prescribe.</p><br>
+    <h3><a href="{% url 'home'%}">Continue as an exception.</a> || <a href="{% url 'reverseSave'%}">Return</a></h3>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
