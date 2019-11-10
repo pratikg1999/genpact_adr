@@ -13,9 +13,14 @@
             <label for="patientAge">Age</label>
             <input type="text" class="form-control" id="patientAge" placeholder="Age" name="age">
         </div>
+        <input type="number" class="form-control" id="patientGender" placeholder="Gender" name="gender" hidden>
         <div class="form-group">
-            <label for="patientGender">Gender</label>
-            <input type="text" class="form-control" id="patientGender" placeholder="Gender" name="gender">
+            <label for="patientGenderSelect">Gender</label>
+            <select class="form-control" id="patientGenderSelect" >
+                <option >Male</option>
+                <option>Female</option>
+                <!-- <option selected>Do not know or not done</option> -->
+            </select>
         </div>
         <div class="form-group">
             <label for="patientDisease">Disease</label>
@@ -158,6 +163,8 @@
     var naranjoCard = document.getElementById("naranjo_card");
     var naranjoFieldValue = document.getElementById("naranjoFieldValue");
     var checkbox = document.getElementById("isPrevMed");
+    var patientGenderBox = document.getElementById("patientGender");
+    var patientGenderSelect = document.getElementById("patientGenderSelect");
 // <!--    var prescriptionForm = document.getElementById("prescriptionForm");-->
 // <!--    var prescriptionForm = document-->
 
@@ -203,6 +210,11 @@
             naranjoFieldValue.value = score;
             console.log(score);
         }
+        console.log(patientGenderSelect.value)
+        // console.log(document.getElementById("patientAge").value)
+        patientGenderBox.value = parseInt(patientGenderSelect.value=="Male" ? 1: 0);
+        // patientGenderBox.value = 1;
+        console.log("gender" + patientGenderBox.value)
         prescriptionForm.submit();
 
     }

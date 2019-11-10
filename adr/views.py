@@ -7,6 +7,9 @@ def naranjo(request):
     return render(request, 'adr/naranjo.html', context)
 
 def add_prescription(request):
+    context = {"title": "My Med Guide"}
+    context["active"] = "addPrescription"
+    context['isADR'] = False
     if request.method == 'POST':
         pres_form = forms.prescription_form(request.POST or None)
 
@@ -25,15 +28,18 @@ def add_prescription(request):
             if naranjoFieldValue == -1:
                 # do the data saving due to naranjoField here.
                 random_code_to_fill_if_statement = 1
-            return render(request, 'adr/result.html', {'isADR': False})
+            return render(request, 'adr/result.html', context)
         else:
+            print(pres_form.errors)
+
             return HttpResponse("Something went wrong")
 
 
-    return render(request, 'adr/add_prescription.html', {})
+    return render(request, 'adr/add_prescription.html', context)
 
 def home(request):
     context = {"title": "My Med Guide"}
+    context["active"] = "home"
     return render(request, "adr/home.html", context)
 
 def reverseSave(request):
@@ -42,6 +48,7 @@ def reverseSave(request):
 
 def prescription_record(request, id=None):
     context = {"title": "Prescription Records"}
+    context["active"] = "prescriptionRecords"
     if(id==None):
         records = models.Prescription.objects.all()
         context["records"] = records

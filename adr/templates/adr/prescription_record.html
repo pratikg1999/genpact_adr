@@ -44,7 +44,15 @@
             </td>
             <td>
                 <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}" style="text-decoration: none; color:inherit;"> -->
-                {{record.gender}}
+                {% if record.gender == 1 %}
+                    <script>
+                        document.write("M");
+                    </script>
+                {% else %}
+                    <script>
+                        document.write("F");
+                    </script>
+                {% endif %}
                 <!-- </a> -->
             </td>
             <td>
@@ -71,6 +79,15 @@
 
 {% else %}
     {% if record %}
+    {% if record.gender == 1 %}
+        <script>
+            var gender = "M";
+        </script>
+    {% else %}
+        <script>
+            var gender = "F";
+        </script>
+    {% endif %}
     <div class="card" id="form_record_detail">
     <div class="card-header">
         Details for Record {{record.pk}}
@@ -88,7 +105,10 @@
         </div>
         <div class="form-row form-group ">
             <label class="col-md-8" for="patientGender">Gender</label>
-            <input class="col-md-4" disabled type="text" class="form-control" id="patientGender" value ="{{ record.gender}}" placeholder="Gender" name="gender">
+            <input class="col-md-4" disabled type="text" class="form-control" id="patientGender" value ="gender" placeholder="Gender" name="gender">
+            <script>
+                document.getElementById("patientGender").value = gender;
+            </script>
         </div>
         <div class="form-row form-group ">
             <label class="col-md-8" for="patientDisease">Disease</label>
