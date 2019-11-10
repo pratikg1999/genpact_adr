@@ -1,24 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{title}}</title>
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!--Bootstrap JS-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    {% block styles %}
-    {% endblock styles %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{title}}</title>
+  <!--Bootstrap CSS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+  <!--Bootstrap JS-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  {% block styles %}
+  {% endblock styles %}
 
 </head>
+
 <body>
-    <div id="main" >
-        {% block content %}
-        {% endblock %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive;">MyMedGuide</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">toggle</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'addPrescription'%}">Add prescription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'prescriptionRecords'%}">Records</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+  <div id="main">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <!--Footer-->
+  <section style="background: #171a21">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row row-md-12">
+          <div class="col-lg-6 footer-info" style="color: #fff">
+            <h3 style="padding-top: 30px; font-family: 'Pacifico', cursive ;">MyMedGuide</h3>
+            <p>
+
+              All working under the President of SAC, who is a faculty mentor.</p>
+          </div>
+
+          <div class="col-lg-6 footer-contact" style="padding-top: 30px;">
+            <h4 style="color: #fff;">Contact Us</h4>
+            <p style="color: #fff;">
+              Ramanunan House, IIIT Naya Raipur<br>
+              Sector-24, Near Muktangan<br>
+              Chhattisgarh<br>
+              <strong>Phone:</strong> +91 9399151865<br>
+              <strong>Email:</strong> anurag17100@iiitnr.edu.in<br>
+
+            </p>
+            <div class="social-links" style="color: #fff;" style="padding: 15px;">
+              <a href="#" class="twitter" style="color: #fff"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook" style="color: #fff"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram" style="color: #fff"><i class="fa fa-instagram"></i></a>
+              <!-- <a href="#" class="pinterest" style="color: #fff"><i class="fa fa-pinterest"></i></a> -->
+              <a href="#" class="linkedin" style="color: #fff"><i class="fa fa-linkedin"></i></a>
+            </div>
+            {% comment %} <div class="social-links" style="color:#fff;">
+              <i class="fa fa-twitter" style="color: #fff"><a href="#" class="twitter"></a></i>
+              <i class="fa fa-facebook" style="color: #fff"><a href="#" class="facebook"></a></i>
+              <i class="fa fa-instagram" style="color: #fff"><a href="#" class="instagram"></a></i>
+              <i class="fa fa-linkedin" style="color: #fff"><a href="#" class="linkedin"></a></i>
+            </div> {% endcomment %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
+
 </html>

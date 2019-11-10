@@ -14,7 +14,7 @@
     </p>
     <hr>
     <p class="mb-0">The prescription has a very low ADR confidence for the symptoms and other factors of patient. The medicine is safe to prescribe.</p><br>
-    <h3><a href="{% url 'home'%}">Continue as an exception.</a> || <a href="{% url 'reverseSave'%}">Return</a></h3>
+    <h3><a href="{% url 'addPresctiption'%}">Continue as an exception.</a> || <a href="{% url 'reverseSave'%}">Return</a></h3>
 
 </div>
 {% else %}
@@ -29,7 +29,7 @@
     </p>
     <hr>
     <p class="mb-0">The prescription has a very high ADR confidence for the symptoms and other factors of patient. The medicine is not recommended to prescribe.</p><br>
-    <h3><a href="{% url 'home'%}">Continue as an exception.</a> || <a href="{% url 'reverseSave'%}">Return</a></h3>
+    <h3><a href="{% url 'addPrescription'%}">Continue as an exception.</a> || <a href="{% url 'reverseSave'%}">Return</a></h3>
 
 </div>
 

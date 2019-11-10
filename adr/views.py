@@ -6,7 +6,7 @@ def naranjo(request):
     context = {"title": "Naranjo"}
     return render(request, 'adr/naranjo.html', context)
 
-def home(request):
+def add_prescription(request):
     if request.method == 'POST':
         pres_form = forms.prescription_form(request.POST or None)
 
@@ -30,11 +30,15 @@ def home(request):
             return HttpResponse("Something went wrong")
 
 
-    return render(request, 'adr/home.html', {})
+    return render(request, 'adr/add_prescription.html', {})
+
+def home(request):
+    context = {"title": "My Med Guide"}
+    return render(request, "adr/home.html", context)
 
 def reverseSave(request):
     models.Prescription.objects.latest('id').delete()
-    return redirect(home)
+    return redirect(add_prescription)
 
 def prescription_record(request, id=None):
     context = {"title": "Prescription Records"}
