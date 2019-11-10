@@ -17,7 +17,7 @@ def home(request):
             gender = pres_form.cleaned_data['gender']
             disease = pres_form.cleaned_data['disease']
             medication = pres_form.cleaned_data['medication']
-            pres_obj = models.Prescription(name = 'anurag', age = 1, gender = 1, disease = 'afnjkhi', medication="medication")
+            pres_obj = models.Prescription(name = name, age = age, gender = gender, disease = disease, medication=medication)
             pres_obj.save()
 
             # do the prediction and searching stuff here, the prediction results has to be rendered with results.html
@@ -32,7 +32,19 @@ def home(request):
 
     return render(request, 'adr/home.html', {})
 
-def reverseSave(reverse):
+def reverseSave(request):
     models.Prescription.objects.latest('id').delete()
     return redirect(home)
+
+def prescription_record(request, id=None):
+    context = {"title": "Prescription Records"}
+    if(id==None):
+        records = models.Prescription.objects.all()
+        context["records"] = records
+    else:
+        record = models.Prescription.objects.get(pk=id)
+        context["record"]  = record
+    context["id"] = id
+    return render(request, 'adr/prescription_record.html', context)
+
 

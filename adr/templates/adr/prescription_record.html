@@ -1,0 +1,111 @@
+{% extends 'adr/base.html' %}
+{% load static %}
+
+{% block styles %}
+<style>
+    #form_record_detail {
+        width: 70vw;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+{{ id }}
+{% if records %}
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Disease</th>
+            <th scope="col">Medication</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}"}> -->
+        <tr>
+            <th scope="row">{{record.pk}}</th>
+            <td>
+                <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}" style="text-decoration: none; color:inherit;"> -->
+                {{record.name}}
+                <!-- </a> -->
+            </td>
+            <td>
+                <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}" style="text-decoration: none; color:inherit;"> -->
+                {{record.age}}
+                <!-- </a> -->
+            </td>
+            <td>
+                <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}" style="text-decoration: none; color:inherit;"> -->
+                {{record.gender}}
+                <!-- </a> -->
+            </td>
+            <td>
+                <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}" style="text-decoration: none; color:inherit;"> -->
+                {{record.disease}}
+                <!-- </a> -->
+            </td>
+            <td>
+                <!-- <a href="{%url 'prescriptionRecordsId' record.pk%}" style="text-decoration: none; color:inherit;"> -->
+                {{record.medication}}
+                <!-- </a> -->
+            </td>
+            <td>
+                <a class="btn btn-info" href="{%url 'prescriptionRecordsId' record.pk%}"
+                    style="text-decoration: none; color:inherit;">
+                    Details
+                </a>
+            </td>
+        </tr>
+        <!-- </a> -->
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+    {% if record %}
+    <div class="card" id="form_record_detail">
+    <div class="card-header">
+        Details for Record {{record.pk}}
+    </div>
+    <div class="card-body">
+        <form method="post" >
+        {%csrf_token%}
+        <div class="form-row form-group ">
+            <label class="col-md-8" for="exampleInputEmail1">Patient's Name </label>
+            <input class="col-md-4" disabled type="text" class="form-control" id="exampleInputEmail1" name="name" value="{{ record.name }}">
+        </div>
+        <div class="form-row form-group ">
+            <label class="col-md-8" for="patientAge">Age</label>
+            <input class="col-md-4" disabled type="text" class="form-control" id="patientAge" value ="{{ record.age }}"  name="age">
+        </div>
+        <div class="form-row form-group ">
+            <label class="col-md-8" for="patientGender">Gender</label>
+            <input class="col-md-4" disabled type="text" class="form-control" id="patientGender" value ="{{ record.gender}}" placeholder="Gender" name="gender">
+        </div>
+        <div class="form-row form-group ">
+            <label class="col-md-8" for="patientDisease">Disease</label>
+            <input class="col-md-4" disabled type="text" class="form-control" id="patientDisease" value ="{{ record.disease}}" placeholder="Disease" name="disease">
+        </div>
+        <div class="form-row form-group ">
+            <label class="col-md-8" for="PatientMedication">Medication</label>
+            <input class="col-md-4" disabled type="text" class="form-control" id="PatientMedication" value ="{{ record.medication}}" placeholder="Medication" name="medication">
+        </div>
+        <br>
+
+<!--    <button type="submit" class="btn btn-primary" style="margin: 10px 0">Submit</button>-->
+    </form>
+    </div>
+    </div>
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}
