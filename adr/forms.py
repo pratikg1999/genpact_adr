@@ -7,4 +7,6 @@ class prescription_form(forms.Form):
     gender = forms.IntegerField()
     disease = forms.CharField(max_length=100)
     medication = forms.CharField(max_length=100)
+    location = forms.CharField(max_length=100)
+    medicine_category = forms.IntegerField()
     naranjoFieldValue = forms.IntegerField()

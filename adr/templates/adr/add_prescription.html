@@ -27,8 +27,24 @@
             <input type="text" class="form-control" id="patientDisease" placeholder="Disease" name="disease">
         </div>
         <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="Location" name="location">
+        </div>
+        <div class="form-group">
             <label for="PatientMedication">Medication</label>
             <input type="text" class="form-control" id="PatientMedication" placeholder="Medication" name="medication">
+        </div>
+
+        <input type="number" class="form-control" id="medicine_category" placeholder="Medicine Category" name="medicine_category" hidden>
+        <div class="form-group">
+            <label for="medicine_categorySelect">Medicine Category</label>
+            <select class="form-control" id="medicine_categorySelect" >
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+                <option >5</option>
+            </select>
         </div>
         <input type="text" class="form-control" id="naranjoFieldValue" value="-1" placeholder="Medication" name="naranjoFieldValue" hidden>
         <div class="form-check">
@@ -165,6 +181,8 @@
     var checkbox = document.getElementById("isPrevMed");
     var patientGenderBox = document.getElementById("patientGender");
     var patientGenderSelect = document.getElementById("patientGenderSelect");
+    var medicineCategoryBox = document.getElementById("medicine_category");
+    var medicineCategorySelect = document.getElementById("medicine_categorySelect");
 // <!--    var prescriptionForm = document.getElementById("prescriptionForm");-->
 // <!--    var prescriptionForm = document-->
 
@@ -210,11 +228,12 @@
             naranjoFieldValue.value = score;
             console.log(score);
         }
-        console.log(patientGenderSelect.value)
+        console.log(medicineCategorySelect.value)
         // console.log(document.getElementById("patientAge").value)
         patientGenderBox.value = parseInt(patientGenderSelect.value=="Male" ? 1: 0);
+        medicineCategoryBox.value = medicineCategorySelect.value;
         // patientGenderBox.value = 1;
-        console.log("gender" + patientGenderBox.value)
+        console.log("med" + medicineCategoryBox.value)
         prescriptionForm.submit();
 
     }

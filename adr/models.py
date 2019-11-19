@@ -7,3 +7,13 @@ class Prescription(models.Model):
     gender = models.IntegerField()
     disease = models.CharField(max_length=100)
     medication = models.CharField(max_length=100)
+
+class ADRDatabase(models.Model):
+    age = models.IntegerField()
+    gender = models.CharField(max_length = 6)
+    location = models.CharField(max_length=100)
+    medicine = models.CharField(max_length=100)
+    medicine_category = models.IntegerField()
+    label = models.DecimalField(max_digits=5, decimal_places=3)
+
+    
